@@ -1,0 +1,44 @@
+.promo-nav-static {
+    position: relative;
+    border-bottom: 1px solid rgba(197, 212, 222, 0.12);
+}
+
+.contact-main {
+    padding: 3rem 0 5rem;
+}
+
+.contact-form {
+    max-width: 28rem;
+}
+
+.contact-form .form-label {
+    color: var(--fog);
+    font-size: 0.9rem;
+}
+
+.contact-form .form-control {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: rgba(197, 212, 222, 0.22);
+    color: var(--paper);
+}
+
+.contact-form .form-control:focus {
+    background: rgba(255, 255, 255, 0.06);
+    border-color: var(--accent);
+    color: var(--paper);
+    box-shadow: 0 0 0 0.2rem rgba(240, 163, 90, 0.2);
+}
+
+.contact-form .form-control.is-invalid {
+    border-color: #e57373;
+}
+
+.contact-form .invalid-feedback {
+    color: #f0a0a0;
+}
+
+.contact-page .alert-success {
+    max-width: 28rem;
+    background: rgba(94, 200, 167, 0.15);
+    color: #b8f0dc;
+}

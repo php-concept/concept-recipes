@@ -5,10 +5,11 @@ namespace Concept\App\Bootstrap;
 use Concept\Stack\ConceptStack;
 use League\Container\Container;
 use Concept\Stack\Bricks\Http\HttpBrick;
+use Concept\Stack\Bricks\Validation\ValidationBrick;
 use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: web track — HttpBrick + ViewBrick + Twig.
+ * Stack recipe: web track — Http + View(Twig) + Validation.
  */
 final class ApplicationStackBootstrap
 {
@@ -16,6 +17,9 @@ final class ApplicationStackBootstrap
     {
         $rootPath = __DIR__ . '/../../../';
         $stack = ConceptStack::create();
+
+        $stack->add(new ValidationBrick())
+            ->builder();
 
         $stack->add(new HttpBrick())
             ->builder()
