@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0dc8444a1a0f2076d73be6f112efdbe8",
+    "content-hash": "cdf5c4cf292eb74351f7f1a82c4a5316",
     "packages": [
         {
             "name": "cuyz/valinor",
@@ -448,6 +448,70 @@
             "time": "2024-09-04T16:06:53+00:00"
         },
         {
+            "name": "league/plates",
+            "version": "v3.6.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/plates.git",
+                "reference": "12ee65166adbc6fb5916fb80b0c0758e49a2d996"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/plates/zipball/12ee65166adbc6fb5916fb80b0c0758e49a2d996",
+                "reference": "12ee65166adbc6fb5916fb80b0c0758e49a2d996",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.0"
+            },
+            "require-dev": {
+                "mikey179/vfsstream": "^1.6",
+                "phpunit/phpunit": "^11.4",
+                "squizlabs/php_codesniffer": "^3.5"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "League\\Plates\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Reinink",
+                    "email": "jonathan@reinink.ca",
+                    "role": "Developer"
+                },
+                {
+                    "name": "RJ Garcia",
+                    "email": "ragboyjr@icloud.com",
+                    "role": "Developer"
+                }
+            ],
+            "description": "Plates, the native PHP template system that's fast, easy to use and easy to extend.",
+            "homepage": "https://platesphp.com",
+            "keywords": [
+                "league",
+                "package",
+                "templates",
+                "templating",
+                "views"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/plates/issues",
+                "source": "https://github.com/thephpleague/plates/tree/v3.6.0"
+            },
+            "time": "2024-11-02T15:03:35+00:00"
+        },
+        {
             "name": "league/route",
             "version": "6.2.0",
             "source": {
@@ -852,6 +916,46 @@
             "time": "2026-10-14T13:12:36+00:00"
         },
         {
+            "name": "php-concept/brick-session-symfony",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-bricks/brick-session-symfony.git",
+                "reference": "9ac047ca57682bad9141bb8805e8ea77f52f944a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-bricks/brick-session-symfony/zipball/9ac047ca57682bad9141bb8805e8ea77f52f944a",
+                "reference": "9ac047ca57682bad9141bb8805e8ea77f52f944a",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "php": "^8.4",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-csrf": "^1.0",
+                "php-concept/extension-session-symfony": "^1.0",
+                "php-concept/stack": "^2.0",
+                "symfony/http-foundation": "^7.2|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Stack\\Bricks\\Session\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept stack brick: session (Symfony)",
+            "support": {
+                "issues": "https://github.com/php-concept-bricks/brick-session-symfony/issues",
+                "source": "https://github.com/php-concept-bricks/brick-session-symfony/tree/v1.0.9"
+            },
+            "time": "2026-10-14T13:12:36+00:00"
+        },
+        {
             "name": "php-concept/brick-validation-rakit",
             "version": "v1.0.9",
             "source": {
@@ -891,6 +995,48 @@
             "support": {
                 "issues": "https://github.com/php-concept-bricks/brick-validation-rakit/issues",
                 "source": "https://github.com/php-concept-bricks/brick-validation-rakit/tree/v1.0.9"
+            },
+            "time": "2026-10-14T13:12:36+00:00"
+        },
+        {
+            "name": "php-concept/brick-view",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-bricks/brick-view.git",
+                "reference": "be1addc78e1f004ffee0fc998f739f0300884da1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-bricks/brick-view/zipball/be1addc78e1f004ffee0fc998f739f0300884da1",
+                "reference": "be1addc78e1f004ffee0fc998f739f0300884da1",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "php": "^8.4",
+                "php-concept/brick-http": "^1.0",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-http": "^1.0",
+                "php-concept/extension-view": "^1.0",
+                "php-concept/extension-view-plates": "^1.0",
+                "php-concept/extension-view-twig": "^1.0",
+                "php-concept/stack": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Stack\\Bricks\\View\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept stack brick: view (Twig / Plates)",
+            "support": {
+                "issues": "https://github.com/php-concept-bricks/brick-view/issues",
+                "source": "https://github.com/php-concept-bricks/brick-view/tree/v1.0.9"
             },
             "time": "2026-10-14T13:12:36+00:00"
         },
@@ -974,6 +1120,49 @@
             "support": {
                 "issues": "https://github.com/php-concept-extensions/extension-casting-valinor/issues",
                 "source": "https://github.com/php-concept-extensions/extension-casting-valinor/tree/v1.1.2"
+            },
+            "time": "2026-10-14T13:08:23+00:00"
+        },
+        {
+            "name": "php-concept/extension-csrf",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-extensions/extension-csrf.git",
+                "reference": "dab55398dc5b06054f30b62274006e2dad5084f1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-csrf/zipball/dab55398dc5b06054f30b62274006e2dad5084f1",
+                "reference": "dab55398dc5b06054f30b62274006e2dad5084f1",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "php": "^8.4",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-event": "^1.0",
+                "php-concept/extension-http": "^1.0",
+                "php-concept/extension-session-symfony": "^1.0",
+                "php-concept/extension-support": "^1.0",
+                "psr/event-dispatcher": "^1.0",
+                "psr/http-message": "^2.0",
+                "psr/http-server-middleware": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Extensions\\Csrf\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept CSRF extension — token manager and verification middleware",
+            "support": {
+                "issues": "https://github.com/php-concept-extensions/extension-csrf/issues",
+                "source": "https://github.com/php-concept-extensions/extension-csrf/tree/v1.1.2"
             },
             "time": "2026-10-14T13:08:23+00:00"
         },
@@ -1136,40 +1325,41 @@
             "time": "2026-10-14T13:08:23+00:00"
         },
         {
-            "name": "php-concept/extension-json",
+            "name": "php-concept/extension-session-symfony",
             "version": "v1.1.2",
             "source": {
                 "type": "git",
-                "url": "https://github.com/php-concept-extensions/extension-json.git",
-                "reference": "8923e3df7a2001fcf894775fc71f4661ce4793cd"
+                "url": "https://github.com/php-concept-extensions/extension-session-symfony.git",
+                "reference": "9e34333b69d6caa1cf22f57170e2094e5b8f68e6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/php-concept-extensions/extension-json/zipball/8923e3df7a2001fcf894775fc71f4661ce4793cd",
-                "reference": "8923e3df7a2001fcf894775fc71f4661ce4793cd",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-session-symfony/zipball/9e34333b69d6caa1cf22f57170e2094e5b8f68e6",
+                "reference": "9e34333b69d6caa1cf22f57170e2094e5b8f68e6",
                 "shasum": ""
             },
             "require": {
                 "league/container": "^5.1",
                 "php": "^8.4",
-                "php-concept/extension-http": "^1.0",
-                "psr/http-message": "^2.0",
-                "psr/http-server-middleware": "^1.0"
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-event": "^1.0",
+                "psr/event-dispatcher": "^1.0",
+                "symfony/http-foundation": "^7.2"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
-                    "Concept\\Extensions\\Json\\": "src/"
+                    "Concept\\Extensions\\SessionSymfony\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
-            "description": "Concept JSON extension — parse JSON body and force JSON responses",
+            "description": "Concept Session extension — session and flash bag",
             "support": {
-                "issues": "https://github.com/php-concept-extensions/extension-json/issues",
-                "source": "https://github.com/php-concept-extensions/extension-json/tree/v1.1.2"
+                "issues": "https://github.com/php-concept-extensions/extension-session-symfony/issues",
+                "source": "https://github.com/php-concept-extensions/extension-session-symfony/tree/v1.1.2"
             },
             "time": "2026-10-14T13:08:23+00:00"
         },
@@ -1245,6 +1435,128 @@
             "support": {
                 "issues": "https://github.com/php-concept-extensions/extension-validation-rakit/issues",
                 "source": "https://github.com/php-concept-extensions/extension-validation-rakit/tree/v1.1.2"
+            },
+            "time": "2026-10-14T13:08:23+00:00"
+        },
+        {
+            "name": "php-concept/extension-view",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-extensions/extension-view.git",
+                "reference": "a2f5505033dabaf609fbe8423ae618bf4cef8e6b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-view/zipball/a2f5505033dabaf609fbe8423ae618bf4cef8e6b",
+                "reference": "a2f5505033dabaf609fbe8423ae618bf4cef8e6b",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "php": "^8.4",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-event": "^1.0",
+                "php-concept/extension-http": "^1.0",
+                "php-concept/extension-support": "^1.0",
+                "psr/event-dispatcher": "^1.0",
+                "psr/http-message": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Extensions\\View\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept View extension — view contracts, response factory, registries",
+            "support": {
+                "issues": "https://github.com/php-concept-extensions/extension-view/issues",
+                "source": "https://github.com/php-concept-extensions/extension-view/tree/v1.1.2"
+            },
+            "time": "2026-10-14T13:08:23+00:00"
+        },
+        {
+            "name": "php-concept/extension-view-plates",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-extensions/extension-view-plates.git",
+                "reference": "ccaff727aefbbce7500cc26060b6be107449cd2a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-view-plates/zipball/ccaff727aefbbce7500cc26060b6be107449cd2a",
+                "reference": "ccaff727aefbbce7500cc26060b6be107449cd2a",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "league/plates": "^3.6",
+                "php": "^8.4",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-event": "^1.0",
+                "php-concept/extension-view": "^1.0",
+                "psr/event-dispatcher": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Extensions\\ViewPlates\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept View Plates engine — PlatesView implementation",
+            "support": {
+                "issues": "https://github.com/php-concept-extensions/extension-view-plates/issues",
+                "source": "https://github.com/php-concept-extensions/extension-view-plates/tree/v1.1.2"
+            },
+            "time": "2026-10-14T13:08:23+00:00"
+        },
+        {
+            "name": "php-concept/extension-view-twig",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-extensions/extension-view-twig.git",
+                "reference": "4809ba9832e0a8bdafc19dc794956d7cdda5c18d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-view-twig/zipball/4809ba9832e0a8bdafc19dc794956d7cdda5c18d",
+                "reference": "4809ba9832e0a8bdafc19dc794956d7cdda5c18d",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "php": "^8.4",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-event": "^1.0",
+                "php-concept/extension-view": "^1.0",
+                "symfony/console": "^7.2|^8.0",
+                "symfony/filesystem": "^7.2|^8.0",
+                "twig/twig": "^3.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Extensions\\ViewTwig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept View Twig engine — TwigView implementation",
+            "support": {
+                "issues": "https://github.com/php-concept-extensions/extension-view-twig/issues",
+                "source": "https://github.com/php-concept-extensions/extension-view-twig/tree/v1.1.2"
             },
             "time": "2026-10-14T13:08:23+00:00"
         },
@@ -1885,6 +2197,159 @@
             "time": "2026-06-05T06:23:12+00:00"
         },
         {
+            "name": "symfony/filesystem",
+            "version": "v8.1.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/filesystem.git",
+                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/filesystem/zipball/43d109c803d22c00bb820ed45df250b6a8792ca2",
+                "reference": "43d109c803d22c00bb820ed45df250b6a8792ca2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.4.1",
+                "symfony/deprecation-contracts": "^2.5|^3",
+                "symfony/polyfill-ctype": "~1.8",
+                "symfony/polyfill-mbstring": "~1.8"
+            },
+            "require-dev": {
+                "symfony/process": "^7.4|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Filesystem\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides basic utilities for the filesystem",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/filesystem/tree/v8.1.9"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-10-06T20:05:50+00:00"
+        },
+        {
+            "name": "symfony/http-foundation",
+            "version": "v7.4.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/http-foundation.git",
+                "reference": "58c89144c7a36dd89c3d01917e9fa3a72d8aaf31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/http-foundation/zipball/58c89144c7a36dd89c3d01917e9fa3a72d8aaf31",
+                "reference": "58c89144c7a36dd89c3d01917e9fa3a72d8aaf31",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.2",
+                "symfony/deprecation-contracts": "^2.5|^3",
+                "symfony/polyfill-mbstring": "^1.1"
+            },
+            "conflict": {
+                "doctrine/dbal": "<3.6",
+                "symfony/cache": "<6.4.12|>=7.0,<7.1.5"
+            },
+            "require-dev": {
+                "doctrine/dbal": "^3.6|^4",
+                "predis/predis": "^1.1|^2.0",
+                "symfony/cache": "^6.4.12|^7.1.5|^8.0",
+                "symfony/clock": "^6.4|^7.0|^8.0",
+                "symfony/dependency-injection": "^6.4|^7.0|^8.0",
+                "symfony/expression-language": "^6.4|^7.0|^8.0",
+                "symfony/http-kernel": "^6.4|^7.0|^8.0",
+                "symfony/mime": "^6.4|^7.0|^8.0",
+                "symfony/rate-limiter": "^6.4|^7.0|^8.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\HttpFoundation\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Defines an object-oriented layer for the HTTP specification",
+            "homepage": "https://symfony.com",
+            "support": {
+                "source": "https://github.com/symfony/http-foundation/tree/v7.4.21"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nicolas-grekas",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-10-08T16:56:12+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.37.0",
             "source": {
@@ -2475,6 +2940,175 @@
                 }
             ],
             "time": "2026-10-03T15:16:03+00:00"
+        },
+        {
+            "name": "twbs/bootstrap",
+            "version": "v5.3.8",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "25aa8cc0b32f0d1a54be575347e6d84b70b1acd7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/25aa8cc0b32f0d1a54be575347e6d84b70b1acd7",
+                "reference": "25aa8cc0b32f0d1a54be575347e6d84b70b1acd7",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                },
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "https://getbootstrap.com/",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/twbs/bootstrap/issues",
+                "source": "https://github.com/twbs/bootstrap/tree/v5.3.8"
+            },
+            "time": "2025-08-26T02:01:02+00:00"
+        },
+        {
+            "name": "twbs/bootstrap-icons",
+            "version": "v1.13.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/icons.git",
+                "reference": "afbfcbcb9bea79ea9923fa9ef82ea03d7ee6c01f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/icons/zipball/afbfcbcb9bea79ea9923fa9ef82ea03d7ee6c01f",
+                "reference": "afbfcbcb9bea79ea9923fa9ef82ea03d7ee6c01f",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                }
+            ],
+            "description": "Official open source SVG icon library for Bootstrap",
+            "homepage": "https://icons.getbootstrap.com/",
+            "keywords": [
+                "bootstrap",
+                "icon font",
+                "icons",
+                "svg"
+            ],
+            "support": {
+                "issues": "https://github.com/twbs/icons/issues",
+                "source": "https://github.com/twbs/icons/tree/v1.13.2"
+            },
+            "time": "2026-10-08T17:11:52+00:00"
+        },
+        {
+            "name": "twig/twig",
+            "version": "v3.30.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twigphp/Twig.git",
+                "reference": "8c737079b726af72ff8ef3c595be9f6a810ea1ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/8c737079b726af72ff8ef3c595be9f6a810ea1ef",
+                "reference": "8c737079b726af72ff8ef3c595be9f6a810ea1ef",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1.0",
+                "symfony/deprecation-contracts": "^2.5|^3",
+                "symfony/polyfill-ctype": "^1.8",
+                "symfony/polyfill-mbstring": "^1.3"
+            },
+            "require-dev": {
+                "php-cs-fixer/shim": "^3.0@stable",
+                "phpstan/phpstan": "^2.0@stable",
+                "psr/container": "^1.0|^2.0",
+                "symfony/phpunit-bridge": "^5.4.9|^6.4|^7.0"
+            },
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/Resources/core.php",
+                    "src/Resources/debug.php",
+                    "src/Resources/escaper.php",
+                    "src/Resources/string_loader.php"
+                ],
+                "psr-4": {
+                    "Twig\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com",
+                    "homepage": "http://fabien.potencier.org",
+                    "role": "Lead Developer"
+                },
+                {
+                    "name": "Twig Team",
+                    "role": "Contributors"
+                },
+                {
+                    "name": "Armin Ronacher",
+                    "email": "armin.ronacher@active-4.com",
+                    "role": "Project Founder"
+                }
+            ],
+            "description": "Twig, the flexible, fast, and secure template language for PHP",
+            "homepage": "https://twig.symfony.com",
+            "keywords": [
+                "templating"
+            ],
+            "support": {
+                "issues": "https://github.com/twigphp/Twig/issues",
+                "source": "https://github.com/twigphp/Twig/tree/v3.30.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2026-09-25T13:20:01+00:00"
         }
     ],
     "packages-dev": [],

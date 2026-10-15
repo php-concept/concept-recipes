@@ -5,7 +5,7 @@ namespace Concept\App\Http\Requests;
 use Concept\Extensions\FormRequest\Requests\FormRequest;
 
 /**
- * Demo FormRequest for contact (web form step 3 / JSON API step 4).
+ * Demo FormRequest for the contact form (recipe step 3).
  *
  * @extends FormRequest<never>
  */
