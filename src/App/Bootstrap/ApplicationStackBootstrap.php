@@ -11,21 +11,25 @@ use Concept\Stack\ConceptStack;
 use Database\Seeders\ContactSubmissionsSeeder;
 use League\Container\Container;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler;
+use Whoops\Handler\PrettyPageHandler;
 use Concept\Stack\Bricks\Console\ConsoleBrick;
 use Concept\Stack\Bricks\Database\DatabaseBrick;
+use Concept\Stack\Bricks\ErrorHandling\ErrorHandlingBrick;
 use Concept\Stack\Bricks\Http\HttpBrick;
 use Concept\Stack\Bricks\Session\SessionBrick;
 use Concept\Stack\Bricks\Validation\ValidationBrick;
 use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: merged web + API — Http, View, Validation, Session/CSRF, Database, Console.
+ * Stack recipe: ErrorHandling (Whoops / fallback) + FormRequest type-hint flow.
+ * Logging — a separate step.
  */
 final class ApplicationStackBootstrap
 {
     public function boot(Container $container): void
     {
         $rootPath = __DIR__ . '/../../../';
+        $debug = getenv('APP_DEBUG') !== '0';
         $stack = ConceptStack::create();
 
         $stack->add(new ValidationBrick())
@@ -62,12 +66,15 @@ final class ApplicationStackBootstrap
             ->setRoutes([
                 $rootPath . 'routes/web.php',
                 $rootPath . 'routes/api.php',
-            ]);
+            ])
+            ->withFormRequests();
 
         $stack->add(new ViewBrick())
             ->builder()
             ->withTwig()
-            ->setViewsPath($rootPath . 'resources/views');
+            ->setViewsPath($rootPath . 'resources/views')
+            ->setCacheDir($rootPath . 'storage/cache/views')
+            ->setDebug($debug);
 
         $stack->add(new ConsoleBrick())
             ->builder()
@@ -80,6 +87,13 @@ final class ApplicationStackBootstrap
                 DbSeedCommand::class,
                 DbSeederListCommand::class,
             ]);
+
+        // logger: false — Monolog on the next step; PHP error_log only for now
+        $stack->add(new ErrorHandlingBrick())
+            ->builder()
+            ->setDebug($debug, new PrettyPageHandler())
+            ->setLogReporting(logger: false, phpErrorLog: true)
+            ->withViewRenderer($rootPath . 'resources/views/errors/fallback');
 
         foreach ($stack->providers() as $provider) {
             $container->addServiceProvider($provider);

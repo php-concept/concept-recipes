@@ -27,6 +27,7 @@ services:
       - MYSQL_DATABASE=concept_recipes
       - MYSQL_USER=root
       - MYSQL_PASSWORD=root
+      - APP_DEBUG=1
     depends_on:
       - db
 

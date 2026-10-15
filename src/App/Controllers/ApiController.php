@@ -4,17 +4,13 @@ namespace Concept\App\Controllers;
 
 use Concept\App\Http\Requests\ContactFormRequest;
 use Concept\Extensions\DatabaseEloquent\Contracts\DatabaseInterface;
-use Concept\Extensions\FormRequest\Contracts\FormRequestFactoryInterface;
 use Concept\Extensions\Http\Contracts\ResponseFactoryInterface;
-use Concept\Extensions\Http\Protocol\HttpStatusCode;
 use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface;
 
 final class ApiController
 {
     public function __construct(
         private readonly ResponseFactoryInterface $response,
-        private readonly FormRequestFactoryInterface $formRequests,
         private readonly DatabaseInterface $database,
     ) {}
 
@@ -34,20 +30,11 @@ final class ApiController
     }
 
     /**
-     * Validates JSON body via FormRequestFactory (same ContactFormRequest as web step 3).
+     * Type-hint FormRequest: resolver validates or throws ValidationException
+     * (HandleJsonValidationExceptionMiddleware → 422 JSON).
      */
-    public function contact(ServerRequestInterface $request): ResponseInterface
+    public function contact(ContactFormRequest $form): ResponseInterface
     {
-        $form = $this->formRequests->make(ContactFormRequest::class, $request);
-
-        if (!$form->validate()) {
-            return $this->response->jsonError(
-                'Validation failed',
-                HttpStatusCode::UNPROCESSABLE_ENTITY,
-                $form->errors(),
-            );
-        }
-
         $validated = $form->validated();
 
         $this->database->capsule()->table('contact_submissions')->insert([

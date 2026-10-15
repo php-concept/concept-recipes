@@ -26,11 +26,11 @@
 
     <main class="contact-main">
         <div class="container-xxl">
-            <p class="section-kicker">Step 5 · Session and CSRF</p>
+            <p class="section-kicker">Step 7 · Error handling</p>
             <h1 class="section-title">FormRequest demo</h1>
             <p class="section-lead">
-                Submit the form with invalid or valid data.
-                POST is protected by a CSRF token in the session.
+                Validation via FormRequest type-hint: errors → flash + redirect.
+                CSRF, flashes, errors, and old input come from ShareViewDataMiddleware.
             </p>
 
             {% if flashes.error is defined %}

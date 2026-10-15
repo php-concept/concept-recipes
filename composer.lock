@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a832747895689a06b64d35f89a5d0135",
+    "content-hash": "05cae84e57e575e3d015de3e42dbce71",
     "packages": [
         {
             "name": "brick/math",
@@ -310,6 +310,77 @@
                 }
             ],
             "time": "2025-08-10T19:31:58+00:00"
+        },
+        {
+            "name": "filp/whoops",
+            "version": "2.18.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filp/whoops.git",
+                "reference": "7d0a2cde892089bb09372f4366e9b960eb3001a9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filp/whoops/zipball/7d0a2cde892089bb09372f4366e9b960eb3001a9",
+                "reference": "7d0a2cde892089bb09372f4366e9b960eb3001a9",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0",
+                "psr/log": "^1.0.1 || ^2.0 || ^3.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.8 || ^9.3.3 || ^10.5.58",
+                "symfony/var-dumper": "^4.0 || ^5.0 || ^6.0 || ^7.0 || ^8.0"
+            },
+            "suggest": {
+                "symfony/var-dumper": "Pretty print complex values better with var-dumper available",
+                "whoops/soap": "Formats errors as SOAP responses"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.7-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Whoops\\": "src/Whoops/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Filipe Dobreira",
+                    "homepage": "https://github.com/filp",
+                    "role": "Developer"
+                }
+            ],
+            "description": "php error handling for cool kids",
+            "homepage": "https://filp.github.io/whoops/",
+            "keywords": [
+                "error",
+                "exception",
+                "handling",
+                "library",
+                "throwable",
+                "whoops"
+            ],
+            "support": {
+                "issues": "https://github.com/filp/whoops/issues",
+                "source": "https://github.com/filp/whoops/tree/2.18.6"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/denis-sokolov",
+                    "type": "github"
+                }
+            ],
+            "time": "2026-10-03T17:03:57+00:00"
         },
         {
             "name": "illuminate/bus",
@@ -2029,6 +2100,51 @@
             "time": "2026-10-14T13:12:36+00:00"
         },
         {
+            "name": "php-concept/brick-error-handler-whoops",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-bricks/brick-error-handler-whoops.git",
+                "reference": "b06597a8d1a1761fa162a0a981c8f4b2f451a5d5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-bricks/brick-error-handler-whoops/zipball/b06597a8d1a1761fa162a0a981c8f4b2f451a5d5",
+                "reference": "b06597a8d1a1761fa162a0a981c8f4b2f451a5d5",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "monolog/monolog": "^3",
+                "php": "^8.4",
+                "php-concept/brick-http": "^1.0",
+                "php-concept/brick-logger-monolog": "^1.0",
+                "php-concept/brick-view": "^1.0",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-error-handler-whoops": "^1.0",
+                "php-concept/extension-http": "^1.0",
+                "php-concept/extension-logger-monolog": "^1.0",
+                "php-concept/extension-view": "^1.0",
+                "php-concept/stack": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Stack\\Bricks\\ErrorHandling\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept stack brick: error handling (Whoops)",
+            "support": {
+                "issues": "https://github.com/php-concept-bricks/brick-error-handler-whoops/issues",
+                "source": "https://github.com/php-concept-bricks/brick-error-handler-whoops/tree/v1.0.9"
+            },
+            "time": "2026-10-14T13:12:36+00:00"
+        },
+        {
             "name": "php-concept/brick-event",
             "version": "v1.0.9",
             "source": {
@@ -2105,6 +2221,46 @@
             "support": {
                 "issues": "https://github.com/php-concept-bricks/brick-http/issues",
                 "source": "https://github.com/php-concept-bricks/brick-http/tree/v1.0.9"
+            },
+            "time": "2026-10-14T13:12:36+00:00"
+        },
+        {
+            "name": "php-concept/brick-logger-monolog",
+            "version": "v1.0.9",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-bricks/brick-logger-monolog.git",
+                "reference": "9e2dda7c930cd4636377455ca439707a348e00ff"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-bricks/brick-logger-monolog/zipball/9e2dda7c930cd4636377455ca439707a348e00ff",
+                "reference": "9e2dda7c930cd4636377455ca439707a348e00ff",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "monolog/monolog": "^3",
+                "php": "^8.4",
+                "php-concept/brick-data-masker": "^1.0",
+                "php-concept/extension-data-masker": "^1.0",
+                "php-concept/extension-logger-monolog": "^1.0",
+                "php-concept/stack": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Stack\\Bricks\\Logging\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept stack brick: logging (Monolog)",
+            "support": {
+                "issues": "https://github.com/php-concept-bricks/brick-logger-monolog/issues",
+                "source": "https://github.com/php-concept-bricks/brick-logger-monolog/tree/v1.0.9"
             },
             "time": "2026-10-14T13:12:36+00:00"
         },
@@ -2483,6 +2639,47 @@
             "time": "2026-10-14T13:08:23+00:00"
         },
         {
+            "name": "php-concept/extension-error-handler-whoops",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-extensions/extension-error-handler-whoops.git",
+                "reference": "5a9e51eed7f8b3fe1092bb4eabab8ff15f742abc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-error-handler-whoops/zipball/5a9e51eed7f8b3fe1092bb4eabab8ff15f742abc",
+                "reference": "5a9e51eed7f8b3fe1092bb4eabab8ff15f742abc",
+                "shasum": ""
+            },
+            "require": {
+                "filp/whoops": "^2.18",
+                "league/container": "^5.1",
+                "php": "^8.4",
+                "php-concept/core-2": "^1.0",
+                "php-concept/extension-event": "^1.0",
+                "psr/container": "^2.0",
+                "psr/event-dispatcher": "^1.0",
+                "psr/http-message": "^2.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Extensions\\ErrorHandlerWhoops\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept Error Handler extension — Whoops integration",
+            "support": {
+                "issues": "https://github.com/php-concept-extensions/extension-error-handler-whoops/issues",
+                "source": "https://github.com/php-concept-extensions/extension-error-handler-whoops/tree/v1.1.2"
+            },
+            "time": "2026-10-14T13:08:23+00:00"
+        },
+        {
             "name": "php-concept/extension-event",
             "version": "v1.1.2",
             "source": {
@@ -2638,6 +2835,47 @@
             "support": {
                 "issues": "https://github.com/php-concept-extensions/extension-json/issues",
                 "source": "https://github.com/php-concept-extensions/extension-json/tree/v1.1.2"
+            },
+            "time": "2026-10-14T13:08:23+00:00"
+        },
+        {
+            "name": "php-concept/extension-logger-monolog",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-extensions/extension-logger-monolog.git",
+                "reference": "69fd6b598be481e9dfcdfc7b55351642b80d53ca"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-logger-monolog/zipball/69fd6b598be481e9dfcdfc7b55351642b80d53ca",
+                "reference": "69fd6b598be481e9dfcdfc7b55351642b80d53ca",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "monolog/monolog": "^3",
+                "php": "^8.4",
+                "php-concept/extension-data-masker": "^1.0",
+                "php-concept/extension-event": "^1.0",
+                "php-concept/extension-support": "^1.0",
+                "psr/event-dispatcher": "^1.0",
+                "psr/log": "^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Extensions\\LoggerMonolog\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept Logger extension — Monolog with explicit handlers and optional data masking",
+            "support": {
+                "issues": "https://github.com/php-concept-extensions/extension-logger-monolog/issues",
+                "source": "https://github.com/php-concept-extensions/extension-logger-monolog/tree/v1.1.2"
             },
             "time": "2026-10-14T13:08:23+00:00"
         },

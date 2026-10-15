@@ -3,10 +3,12 @@
 namespace Concept\App\Http;
 
 /**
- * App session storage keys (recipe glue, not extension contracts).
+ * App session / flash storage keys (recipe glue, not extension contracts).
  */
 final class SessionKey
 {
+    public const string VALIDATION_ERRORS = '_validation_errors';
+    public const string VALIDATION_DATA = '_validation_data';
     public const string URL_PREVIOUS = '_url_previous';
     public const string URL_CURRENT = '_url_current';
 }
