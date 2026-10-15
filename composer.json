@@ -1,0 +1,14 @@
+{
+    "name": "php-concept/recipes",
+    "description": "Concept 2 \u2014 runnable recipe apps for documentation",
+    "require": {
+        "php": "^8.4",
+        "php-concept/core-2": "^1.0",
+        "php-concept/stack": "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Concept\\": "src/"
+        }
+    }
+}

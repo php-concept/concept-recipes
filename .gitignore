@@ -1,0 +1,7 @@
+/.idea
+/vendor/
+/.env
+/composer-dev.json
+/composer-dev.lock
+/docker-compose.yml
+/README.md
