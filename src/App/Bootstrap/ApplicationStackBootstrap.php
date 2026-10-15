@@ -2,13 +2,16 @@
 
 namespace Concept\App\Bootstrap;
 
+use Concept\App\Foundation\AppConfig;
+use Concept\App\Foundation\ConfigKey;
+use Concept\Core\Container\ContainerDependency;
+use Concept\Extensions\Config\Contracts\ConfigInterface;
 use Concept\Extensions\DatabaseEloquent\Console\Commands\DbMigrateCommand;
 use Concept\Extensions\DatabaseEloquent\Console\Commands\DbMigrationListCommand;
 use Concept\Extensions\DatabaseEloquent\Console\Commands\DbRollbackCommand;
 use Concept\Extensions\DatabaseEloquent\Console\Commands\DbSeedCommand;
 use Concept\Extensions\DatabaseEloquent\Console\Commands\DbSeederListCommand;
 use Concept\Stack\ConceptStack;
-use Database\Seeders\ContactSubmissionsSeeder;
 use League\Container\Container;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler;
 use Whoops\Handler\PrettyPageHandler;
@@ -24,15 +27,17 @@ use Concept\Stack\Bricks\Validation\ValidationBrick;
 use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: Casting — FormRequest → DTO (toDto), typed route parameters.
- * Config / PathManager — next step.
+ * Stack recipe: Config — values from config/*.php + .env; paths still literal until step 12.
  */
 final class ApplicationStackBootstrap
 {
     public function boot(Container $container): void
     {
         $rootPath = __DIR__ . '/../../../';
-        $debug = getenv('APP_DEBUG') !== '0';
+        $config = ContainerDependency::get($container, ConfigInterface::class);
+        $app = new AppConfig($config);
+        $debug = $config->getBool(ConfigKey::APP_DEBUG);
+
         $stack = ConceptStack::create();
 
         $stack->add(new CastingBrick())
@@ -40,35 +45,34 @@ final class ApplicationStackBootstrap
             ->setCacheDir($rootPath . 'storage/cache/casting')
             ->setDebug($debug);
 
-        $stack->add(new ValidationBrick())
+        $validation = $stack->add(new ValidationBrick())
+            ->builder();
+        if ($config->getBool(ConfigKey::VALIDATOR_LOG_ENABLED)) {
+            $validation->withLogging(
+                $rootPath . 'storage/logs/' . $config->getString(ConfigKey::VALIDATOR_LOG_FILE, 'validation.log'),
+                $config->getInt(ConfigKey::VALIDATOR_LOG_MAX_FILES, 7),
+            );
+        }
+        $validation->withMasking();
+
+        $database = $stack->add(new DatabaseBrick())
             ->builder()
-            ->withLogging($rootPath . 'storage/logs/validation.log', 7)
+            ->setConnection($app->dbConnection())
+            ->setMigrations([$rootPath . 'database/migrations'])
+            ->setMigrationsTable($config->getString(ConfigKey::MIGRATIONS_TABLE, 'migrations'))
+            ->setSeeders($app->seeders())
             ->withMasking();
 
-        $stack->add(new DatabaseBrick())
-            ->builder()
-            ->setConnection([
-                'driver' => 'mysql',
-                'host' => getenv('MYSQL_HOST') ?: 'concept_recipes_db',
-                'port' => (int) (getenv('MYSQL_PORT') ?: 3306),
-                'database' => getenv('MYSQL_DATABASE') ?: 'concept_recipes',
-                'username' => getenv('MYSQL_USER') ?: 'root',
-                'password' => getenv('MYSQL_PASSWORD') ?: 'root',
-                'charset' => 'utf8mb4',
-                'collation' => 'utf8mb4_unicode_ci',
-                'prefix' => '',
-            ])
-            ->setMigrations([$rootPath . 'database/migrations'])
-            ->setMigrationsTable('migrations')
-            ->setSeeders([
-                ContactSubmissionsSeeder::class,
-            ])
-            ->withQueryLogging($rootPath . 'storage/logs/query.log', 7)
-            ->withMasking();
+        if ($config->getBool(ConfigKey::DB_LOG_ENABLED)) {
+            $database->withQueryLogging(
+                $rootPath . 'storage/logs/' . $config->getString(ConfigKey::DB_LOG_FILE, 'query.log'),
+                $config->getInt(ConfigKey::DB_LOG_MAX_FILES, 7),
+            );
+        }
 
         $stack->add(new SessionBrick())
             ->builder()
-            ->setHandlerFactory(function() use ($rootPath) {
+            ->setHandlerFactory(function () use ($rootPath) {
                 return new NativeFileSessionHandler($rootPath . 'storage/sessions');
             })
             ->withCsrf();
@@ -91,8 +95,8 @@ final class ApplicationStackBootstrap
 
         $stack->add(new ConsoleBrick())
             ->builder()
-            ->setName('Recipes')
-            ->setVersion('1.0.0')
+            ->setName($config->getString(ConfigKey::APP_NAME, 'Recipes'))
+            ->setVersion($config->getString(ConfigKey::APP_VERSION, '1.0.0'))
             ->setCommands([
                 DbMigrateCommand::class,
                 DbRollbackCommand::class,
@@ -103,21 +107,15 @@ final class ApplicationStackBootstrap
 
         $stack->add(new MaskingBrick())
             ->builder()
-            ->setPatterns([
-                '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.[a-z]{2,}/i' => '***@***.***',
-            ])
-            ->setKeyPatterns([
-                '/^email$/i',
-                '/.*password.*/i',
-                '/.*token.*/i',
-                '/.*secret.*/i',
-            ]);
+            ->setPatterns($app->maskingPatterns())
+            ->setKeyPatterns($app->maskingKeyPatterns());
 
+        $appLogFile = $config->getString(ConfigKey::LOG_FILE, 'app.log');
         $stack->add(new LoggingBrick())
             ->builder()
-            ->setLevel('INFO')
-            ->setChannel('recipes')
-            ->toRotatingFile($rootPath . 'storage/logs/app.log', 7)
+            ->setLevel($config->getString(ConfigKey::LOG_LEVEL, 'INFO'))
+            ->setChannel($config->getString(ConfigKey::LOG_NAME, 'recipes'))
+            ->toRotatingFile($rootPath . 'storage/logs/' . $appLogFile, $config->getInt(ConfigKey::LOG_MAX_FILES, 7))
             ->withMasking();
 
         $stack->add(new ErrorHandlingBrick())

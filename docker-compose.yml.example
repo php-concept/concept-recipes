@@ -10,12 +10,6 @@ services:
       - .:/var/www/html
       - ./docker/apache/vhost.conf:/etc/apache2/sites-available/000-default.conf
       - ./docker/php/error-reporting.ini:/usr/local/etc/php/conf.d/error-reporting.ini
-    environment:
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=concept_recipes
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
-      - APP_DEBUG=1
     depends_on:
       - db
 

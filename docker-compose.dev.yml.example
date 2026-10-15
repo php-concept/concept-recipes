@@ -23,11 +23,6 @@ services:
       - ./docker/php/error-reporting.ini:/usr/local/etc/php/conf.d/error-reporting.ini
     environment:
       - COMPOSER=composer-dev.json
-      - MYSQL_HOST=db
-      - MYSQL_DATABASE=concept_recipes
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=root
-      - APP_DEBUG=1
     depends_on:
       - db
 
