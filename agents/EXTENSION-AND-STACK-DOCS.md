@@ -86,7 +86,8 @@
 ### Крок 1 рецепта (вже є)
 
 ```php
-$stack->addHttp()
+$stack->add(new HttpBrick())
+    ->builder()
     ->setRoutes([$rootPath . 'routes/web.php']);
 ```
 
@@ -103,13 +104,11 @@ $stack->addHttp()
 Приклад комбінованої збірки (не рецепт):
 
 ```php
-$stack->addCasting()
-    ->…;
+$stack->add(new CastingBrick())->builder()/* … */;
+$stack->add(new ValidationBrick())->builder()/* … */;
 
-$stack->addValidation()
-    ->…;
-
-$stack->addHttp()
+$stack->add(new HttpBrick())
+    ->builder()
     ->setRoutes([$rootPath . 'routes/web.php'])
     ->setInterceptors([
         static fn (ContainerInterface $c) => $c->get(AuthInterceptor::class),
@@ -136,7 +135,7 @@ Instance / factory Closure; class-string не підтримується.
 ```
 Stack
   Огляд ConceptStack
-  Bricks і addX()           ← індекс
+  Bricks                    ← індекс
   Http brick
   View brick
   Validation brick
@@ -159,8 +158,8 @@ Optional brick-методи з’являються в recipes **лише кол
 | Крок | Stack brick додатково |
 |------|------------------------|
 | 1 | `setRoutes()` |
-| 3 | `addValidation()`; `withFormRequests()` лише для type-hint у action |
-| 3+ / 10 | `addCasting()` + `withTypedRouteParameters()` — опційний крок 10 (DTO / typed routes) |
+| 3 | `ValidationBrick`; `withFormRequests()` лише для type-hint у action |
+| 3+ / 10 | `CastingBrick` + `withTypedRouteParameters()` — опційний крок 10 (DTO / typed routes) |
 | 4 JSON | `setNotFoundMiddleware()` для API — опційно |
 | 5 | `setInterceptors()` — якщо треба до session |
 

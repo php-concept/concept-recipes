@@ -76,7 +76,7 @@ curl -s http://localhost:8089/
 
 ## Крок 2 — деталі (реалізовано)
 
-- `addView()->withTwig()->setViewsPath(...)->setCacheDir(...)`
+- `add(new ViewBrick())->builder()->withTwig()->setViewsPath(...)->setCacheDir(...)`
 - `resources/views/index.twig` + `public/css|js`
 - Controller → `ViewResponseFactoryInterface::create('index')`
 - Bootstrap/Icons у `composer.json`; `public/vendor/` і `storage/` — gitignore
@@ -212,8 +212,8 @@ ls -la storage/logs/
 
 ## Крок 10 — Casting і DTO
 
-- `addCasting()->setCacheDir(...)->setDebug(...)`
-- `addHttp()->withTypedRouteParameters()` — `{id}` → `int $id` (`GET /contact/{id}`)
+- `add(new CastingBrick())->builder()->setCacheDir(...)->setDebug(...)`
+- `HttpBrick` + `withTypedRouteParameters()` — `{id}` → `int $id` (`GET /contact/{id}`)
 - `ContactDto` + `ContactFormRequest::$dtoClass` + `$form->toDto()`
 - `contact-show.twig` + `ContactController::showById`
 - Controllers: `insert($dto->toArray())`

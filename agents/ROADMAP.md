@@ -5,9 +5,9 @@
 | Компонент | Стан |
 |-----------|------|
 | concept-recipes tip (step 12 glue) | ✓ `add(new *Brick())->builder()` + `stack ^2` + `brick-*` |
-| concept-recipes git step-* tags | ⚠ ще старий `addHttp()` API — потрібен rewrite історії |
+| concept-recipes git step-* tags | ✓ rewrite: 1 commit = 1 крок, brick API |
 | concept-recipes Docker | ✓ users + dev (+ `concept-bricks` mount) |
-| concept-docs рецепти | ⚠ лістинги зі старим `addHttp()` — sync після rewrite tags |
+| concept-docs рецепти | ⚠ лістинги зі старим `addHttp()` — sync з tags |
 | Stack / Extensions / Core sections | частково; bricks naming у docs — sync |
 | `composer.lock` | ✓ users (`stack` v2 + bricks) |
 
