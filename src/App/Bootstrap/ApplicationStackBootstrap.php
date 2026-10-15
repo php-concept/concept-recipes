@@ -6,10 +6,9 @@ use Concept\Stack\ConceptStack;
 use League\Container\Container;
 use Concept\Stack\Bricks\Http\HttpBrick;
 use Concept\Stack\Bricks\Validation\ValidationBrick;
-use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: web track — Http + View(Twig) + Validation.
+ * Stack recipe: api track — Http + Validation (JSON surface, no View).
  */
 final class ApplicationStackBootstrap
 {
@@ -23,12 +22,7 @@ final class ApplicationStackBootstrap
 
         $stack->add(new HttpBrick())
             ->builder()
-            ->setRoutes([$rootPath . 'routes/web.php']);
-
-        $stack->add(new ViewBrick())
-            ->builder()
-            ->withTwig()
-            ->setViewsPath($rootPath . 'resources/views');
+            ->setRoutes([$rootPath . 'routes/api.php']);
 
         foreach ($stack->providers() as $provider) {
             $container->addServiceProvider($provider);
