@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3cd35258625a1468d0ca9be275c00022",
+    "content-hash": "72f22eeb47ce6717ce8c719ed0286cfe",
     "packages": [
         {
             "name": "brick/math",
@@ -3039,6 +3039,43 @@
             "support": {
                 "issues": "https://github.com/php-concept-extensions/extension-logger-monolog/issues",
                 "source": "https://github.com/php-concept-extensions/extension-logger-monolog/tree/v1.1.2"
+            },
+            "time": "2026-10-14T13:08:23+00:00"
+        },
+        {
+            "name": "php-concept/extension-path-manager",
+            "version": "v1.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-concept-extensions/extension-path-manager.git",
+                "reference": "c7d8443ce830a11056e2fd609c2c699f810524a5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-concept-extensions/extension-path-manager/zipball/c7d8443ce830a11056e2fd609c2c699f810524a5",
+                "reference": "c7d8443ce830a11056e2fd609c2c699f810524a5",
+                "shasum": ""
+            },
+            "require": {
+                "league/container": "^5.1",
+                "php": "^8.4",
+                "php-concept/extension-event": "^1.0",
+                "psr/event-dispatcher": "^1.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Concept\\Extensions\\PathManager\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Concept PathManager extension — project root and named path map resolution",
+            "support": {
+                "issues": "https://github.com/php-concept-extensions/extension-path-manager/issues",
+                "source": "https://github.com/php-concept-extensions/extension-path-manager/tree/v1.1.2"
             },
             "time": "2026-10-14T13:08:23+00:00"
         },

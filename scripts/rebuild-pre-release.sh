@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
-# Rebuild pre-release from legacy source commits (one-time migration helper).
-# Day-to-day: edit commits directly on pre-release (one commit per recipe step).
+# Legacy: rebuild linear main history from old source commits (one-time migration).
+# Day-to-day: edit step commits on main + retag step-* (see agents/GIT-BRANCHES-TAGS.md).
 set -euo pipefail
 
 cd "$(git rev-parse --show-toplevel)"
@@ -20,7 +20,7 @@ steps=(
   "step-10-casting|Casting and DTO|166689a"
 )
 
-branch="pre-release"
+branch="main"
 tmp="${branch}-build-$$"
 
 git checkout --orphan "$tmp"
@@ -39,6 +39,7 @@ for entry in "${steps[@]}"; do
   IFS='|' read -r tag title commit <<< "$entry"
   echo "→ $tag ($commit)"
   git read-tree --reset -u "$commit"
+  git checkout "${AGENTS_REF:-main}" -- agents/ 2>/dev/null || true
   git add -A
   git commit -m "$title ($tag)"
   git tag -f "$tag"
