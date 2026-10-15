@@ -23,8 +23,8 @@ use Concept\Stack\Bricks\Validation\ValidationBrick;
 use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: Logging (Monolog) + Masking on the app log channel.
- * Diagnostic sinks (validation / SQL) — next step.
+ * Stack recipe: diagnostic sinks — validation.log + query.log (with masking).
+ * Config / PathManager — next step.
  */
 final class ApplicationStackBootstrap
 {
@@ -35,7 +35,9 @@ final class ApplicationStackBootstrap
         $stack = ConceptStack::create();
 
         $stack->add(new ValidationBrick())
-            ->builder();
+            ->builder()
+            ->withLogging($rootPath . 'storage/logs/validation.log', 7)
+            ->withMasking();
 
         $stack->add(new DatabaseBrick())
             ->builder()
@@ -54,7 +56,9 @@ final class ApplicationStackBootstrap
             ->setMigrationsTable('migrations')
             ->setSeeders([
                 ContactSubmissionsSeeder::class,
-            ]);
+            ])
+            ->withQueryLogging($rootPath . 'storage/logs/query.log', 7)
+            ->withMasking();
 
         $stack->add(new SessionBrick())
             ->builder()
@@ -90,7 +94,6 @@ final class ApplicationStackBootstrap
                 DbSeederListCommand::class,
             ]);
 
-        // Mask before Logging so withMasking() can require the capability.
         $stack->add(new MaskingBrick())
             ->builder()
             ->setPatterns([
