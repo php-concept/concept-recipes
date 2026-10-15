@@ -5,3 +5,5 @@
 /composer-dev.lock
 /docker-compose.yml
 /README.md
+/storage
+/public/vendor

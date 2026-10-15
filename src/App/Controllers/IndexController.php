@@ -2,20 +2,17 @@
 
 namespace Concept\App\Controllers;
 
-use Concept\Extensions\Http\Response\ResponseFactory;
+use Concept\Extensions\View\Contracts\ViewResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class IndexController
 {
     public function __construct(
-        private readonly ResponseFactory $responseFactory,
+        private readonly ViewResponseFactoryInterface $view,
     ) {}
 
     public function index(): ResponseInterface
     {
-        $response = $this->responseFactory->createResponse();
-        $response->getBody()->write('Hello, world!');
-
-        return $response;
+        return $this->view->create('index');
     }
 }

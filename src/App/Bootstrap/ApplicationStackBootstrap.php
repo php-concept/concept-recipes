@@ -5,9 +5,10 @@ namespace Concept\App\Bootstrap;
 use Concept\Stack\ConceptStack;
 use League\Container\Container;
 use Concept\Stack\Bricks\Http\HttpBrick;
+use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: web track, step 01 — HttpBrick only.
+ * Stack recipe: web track — HttpBrick + ViewBrick + Twig.
  */
 final class ApplicationStackBootstrap
 {
@@ -19,6 +20,11 @@ final class ApplicationStackBootstrap
         $stack->add(new HttpBrick())
             ->builder()
             ->setRoutes([$rootPath . 'routes/web.php']);
+
+        $stack->add(new ViewBrick())
+            ->builder()
+            ->withTwig()
+            ->setViewsPath($rootPath . 'resources/views');
 
         foreach ($stack->providers() as $provider) {
             $container->addServiceProvider($provider);
