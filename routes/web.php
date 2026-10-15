@@ -18,6 +18,7 @@ $router->group('', function (RouteGroup $router): void {
 
     $router->get('/contact', [ContactController::class, 'show'])->setName('contact');
     $router->post('/contact', [ContactController::class, 'submit'])->setName('contact.submit');
+    $router->get('/contact/{id}', [ContactController::class, 'showById'])->setName('contact.show');
 })->lazyMiddlewares([
     StorePreviousUrlMiddleware::class,
     HandleValidationExceptionMiddleware::class,

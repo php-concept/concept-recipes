@@ -2,6 +2,7 @@
 
 namespace Concept\App\Controllers;
 
+use Concept\App\Dto\ContactDto;
 use Concept\App\Http\Requests\ContactFormRequest;
 use Concept\Extensions\DatabaseEloquent\Contracts\DatabaseInterface;
 use Concept\Extensions\Http\Contracts\ResponseFactoryInterface;
@@ -31,21 +32,19 @@ final class ApiController
 
     /**
      * Type-hint FormRequest: resolver validates or throws ValidationException
-     * (HandleJsonValidationExceptionMiddleware → 422 JSON).
+     * (HandleJsonValidationExceptionMiddleware → 422 JSON). After casting: toDto().
      */
     public function contact(ContactFormRequest $form): ResponseInterface
     {
-        $validated = $form->validated();
+        $dto = $form->toDto();
+        if (!$dto instanceof ContactDto) {
+            throw new \RuntimeException('ContactDto casting failed — is addCasting() enabled?');
+        }
 
-        $this->database->capsule()->table('contact_submissions')->insert([
-            'name' => $validated['name'],
-            'email' => $validated['email'],
-            'message' => $validated['message'],
-            'created_at' => date('Y-m-d H:i:s'),
-        ]);
+        $this->database->capsule()->table('contact_submissions')->insert($dto->toArray());
 
         return $this->response->jsonSuccess([
-            'validated' => $validated,
+            'validated' => $dto->toArray(),
             'saved' => true,
         ]);
     }

@@ -12,6 +12,7 @@ use Database\Seeders\ContactSubmissionsSeeder;
 use League\Container\Container;
 use Symfony\Component\HttpFoundation\Session\Storage\Handler\NativeFileSessionHandler;
 use Whoops\Handler\PrettyPageHandler;
+use Concept\Stack\Bricks\Casting\CastingBrick;
 use Concept\Stack\Bricks\Console\ConsoleBrick;
 use Concept\Stack\Bricks\Database\DatabaseBrick;
 use Concept\Stack\Bricks\ErrorHandling\ErrorHandlingBrick;
@@ -23,7 +24,7 @@ use Concept\Stack\Bricks\Validation\ValidationBrick;
 use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: diagnostic sinks — validation.log + query.log (with masking).
+ * Stack recipe: Casting — FormRequest → DTO (toDto), typed route parameters.
  * Config / PathManager — next step.
  */
 final class ApplicationStackBootstrap
@@ -33,6 +34,11 @@ final class ApplicationStackBootstrap
         $rootPath = __DIR__ . '/../../../';
         $debug = getenv('APP_DEBUG') !== '0';
         $stack = ConceptStack::create();
+
+        $stack->add(new CastingBrick())
+            ->builder()
+            ->setCacheDir($rootPath . 'storage/cache/casting')
+            ->setDebug($debug);
 
         $stack->add(new ValidationBrick())
             ->builder()
@@ -73,7 +79,8 @@ final class ApplicationStackBootstrap
                 $rootPath . 'routes/web.php',
                 $rootPath . 'routes/api.php',
             ])
-            ->withFormRequests();
+            ->withFormRequests()
+            ->withTypedRouteParameters();
 
         $stack->add(new ViewBrick())
             ->builder()

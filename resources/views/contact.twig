@@ -26,11 +26,11 @@
 
     <main class="contact-main">
         <div class="container-xxl">
-            <p class="section-kicker">Step 7 · Error handling</p>
-            <h1 class="section-title">FormRequest demo</h1>
+            <p class="section-kicker">Step 10 · Casting</p>
+            <h1 class="section-title">FormRequest → DTO demo</h1>
             <p class="section-lead">
-                Validation via FormRequest type-hint: errors → flash + redirect.
-                CSRF, flashes, errors, and old input come from ShareViewDataMiddleware.
+                After validation, <code>toDto()</code> yields a <code>ContactDto</code>
+                (typed fields). CSRF, flashes, errors, and old input come from ShareViewDataMiddleware.
             </p>
 
             {% if flashes.error is defined %}

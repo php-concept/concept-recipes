@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Show contact submission — Concept 2">
+    <title>Submission #{{ id }} · Concept 2</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Figtree:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/vendor/bootstrap-icons/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/contact.css">
+</head>
+<body class="contact-page">
+    <nav class="promo-nav promo-nav-static">
+        <div class="container-xxl d-flex align-items-center justify-content-between">
+            <a class="brand" href="/">Concept <span>2</span></a>
+            <div class="d-flex gap-2">
+                <a class="btn-promo btn-promo-ghost" href="/">Home</a>
+                <a class="btn-promo btn-promo-ghost" href="/contact">Contact</a>
+                <a class="btn-promo btn-promo-ghost" href="/api/stats" target="_blank" rel="noopener noreferrer">Stats</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="contact-main">
+        <div class="container-xxl">
+            <p class="section-kicker">GET /contact/{id}</p>
+            <h1 class="section-title">Submission #{{ id }}</h1>
+            <p class="section-lead">
+                View a saved submission from the database.
+            </p>
+
+            {% if found %}
+                <div class="alert alert-success border-0" role="status">
+                    <div><strong>{{ submission.name }}</strong> · <code>{{ submission.email }}</code></div>
+                    <p class="mb-0 mt-2">{{ submission.message }}</p>
+                </div>
+            {% else %}
+                <div class="alert alert-danger border-0" role="alert">
+                    No record found for id=<code>{{ id }}</code>.
+                </div>
+            {% endif %}
+        </div>
+    </main>
+</body>
+</html>

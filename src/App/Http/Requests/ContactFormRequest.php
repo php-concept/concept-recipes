@@ -2,15 +2,18 @@
 
 namespace Concept\App\Http\Requests;
 
+use Concept\App\Dto\ContactDto;
 use Concept\Extensions\FormRequest\Requests\FormRequest;
 
 /**
- * Demo FormRequest for the contact form (recipe step 3).
+ * Demo FormRequest for the contact form.
  *
- * @extends FormRequest<never>
+ * @extends FormRequest<ContactDto>
  */
 final class ContactFormRequest extends FormRequest
 {
+    protected ?string $dtoClass = ContactDto::class;
+
     public function rules(): array
     {
         return [
