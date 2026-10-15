@@ -4,6 +4,7 @@
 #   cp docker-compose.dev.yml.example docker-compose.yml
 #   COMPOSER=composer-dev.json composer install
 #   docker compose up -d --build
+#   docker compose exec app php bin/console.php db:migrate
 services:
   app:
     build: .
@@ -22,3 +23,20 @@ services:
       - ./docker/php/error-reporting.ini:/usr/local/etc/php/conf.d/error-reporting.ini
     environment:
       - COMPOSER=composer-dev.json
+      - MYSQL_HOST=db
+      - MYSQL_DATABASE=concept_recipes
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+    depends_on:
+      - db
+
+  db:
+    image: mysql:8.4
+    command: --mysql-native-password=ON
+    container_name: concept_recipes_db
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: concept_recipes
+      MYSQL_ROOT_PASSWORD: root
+    ports:
+      - "3366:3306"

@@ -77,13 +77,17 @@
     ],
     "autoload": {
         "psr-4": {
-            "Concept\\": "src/"
+            "Concept\\": "src/",
+            "Database\\Seeders\\": "database/seeders/"
         }
     },
     "require": {
         "php": "^8.4",
         "php-concept/core-2": "^1.0",
         "php-concept/stack": "^2.0",
+        "php-concept/extension-json": "^1.0",
+        "php-concept/brick-console-symfony": "^1.0",
+        "php-concept/brick-database-eloquent": "^1.0",
         "php-concept/brick-http": "^1.0",
         "php-concept/brick-session-symfony": "^1.0",
         "php-concept/brick-validation-rakit": "^1.0",

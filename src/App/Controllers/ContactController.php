@@ -4,6 +4,7 @@ namespace Concept\App\Controllers;
 
 use Concept\App\Http\Requests\ContactFormRequest;
 use Concept\Extensions\Csrf\Contracts\CsrfTokenManagerInterface;
+use Concept\Extensions\DatabaseEloquent\Contracts\DatabaseInterface;
 use Concept\Extensions\FormRequest\Contracts\FormRequestFactoryInterface;
 use Concept\Extensions\Http\Protocol\HttpStatusCode;
 use Concept\Extensions\SessionSymfony\Contracts\FlashBagInterface;
@@ -18,6 +19,7 @@ final class ContactController
         private readonly FormRequestFactoryInterface $formRequests,
         private readonly CsrfTokenManagerInterface $csrf,
         private readonly FlashBagInterface $flashBag,
+        private readonly DatabaseInterface $database,
     ) {}
 
     public function show(): ResponseInterface
@@ -43,12 +45,21 @@ final class ContactController
             ], HttpStatusCode::UNPROCESSABLE_ENTITY);
         }
 
+        $validated = $form->validated();
+
+        $this->database->capsule()->table('contact_submissions')->insert([
+            'name' => $validated['name'],
+            'email' => $validated['email'],
+            'message' => $validated['message'],
+            'created_at' => date('Y-m-d H:i:s'),
+        ]);
+
         return $this->view->create('contact', [
             ...$this->formViewData(),
             'errors' => [],
             'old' => [],
             'success' => true,
-            'validated' => $form->validated(),
+            'validated' => $validated,
         ]);
     }
 
