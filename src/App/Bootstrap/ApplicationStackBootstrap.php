@@ -16,13 +16,15 @@ use Concept\Stack\Bricks\Console\ConsoleBrick;
 use Concept\Stack\Bricks\Database\DatabaseBrick;
 use Concept\Stack\Bricks\ErrorHandling\ErrorHandlingBrick;
 use Concept\Stack\Bricks\Http\HttpBrick;
+use Concept\Stack\Bricks\Logging\LoggingBrick;
+use Concept\Stack\Bricks\Masking\MaskingBrick;
 use Concept\Stack\Bricks\Session\SessionBrick;
 use Concept\Stack\Bricks\Validation\ValidationBrick;
 use Concept\Stack\Bricks\View\ViewBrick;
 
 /**
- * Stack recipe: ErrorHandling (Whoops / fallback) + FormRequest type-hint flow.
- * Logging — a separate step.
+ * Stack recipe: Logging (Monolog) + Masking on the app log channel.
+ * Diagnostic sinks (validation / SQL) — next step.
  */
 final class ApplicationStackBootstrap
 {
@@ -88,11 +90,30 @@ final class ApplicationStackBootstrap
                 DbSeederListCommand::class,
             ]);
 
-        // logger: false — Monolog on the next step; PHP error_log only for now
+        // Mask before Logging so withMasking() can require the capability.
+        $stack->add(new MaskingBrick())
+            ->builder()
+            ->setPatterns([
+                '/[a-z0-9_\-\+\.]+@[a-z0-9\-]+\.[a-z]{2,}/i' => '***@***.***',
+            ])
+            ->setKeyPatterns([
+                '/^email$/i',
+                '/.*password.*/i',
+                '/.*token.*/i',
+                '/.*secret.*/i',
+            ]);
+
+        $stack->add(new LoggingBrick())
+            ->builder()
+            ->setLevel('INFO')
+            ->setChannel('recipes')
+            ->toRotatingFile($rootPath . 'storage/logs/app.log', 7)
+            ->withMasking();
+
         $stack->add(new ErrorHandlingBrick())
             ->builder()
             ->setDebug($debug, new PrettyPageHandler())
-            ->setLogReporting(logger: false, phpErrorLog: true)
+            ->setLogReporting(logger: true, phpErrorLog: true)
             ->withViewRenderer($rootPath . 'resources/views/errors/fallback');
 
         foreach ($stack->providers() as $provider) {

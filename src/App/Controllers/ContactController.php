@@ -4,6 +4,7 @@ namespace Concept\App\Controllers;
 
 use Concept\App\Http\Requests\ContactFormRequest;
 use Concept\Extensions\DatabaseEloquent\Contracts\DatabaseInterface;
+use Concept\Extensions\LoggerMonolog\Contracts\LoggerInterface;
 use Concept\Extensions\View\Contracts\ViewResponseFactoryInterface;
 use Psr\Http\Message\ResponseInterface;
 
@@ -12,6 +13,7 @@ final class ContactController
     public function __construct(
         private readonly ViewResponseFactoryInterface $view,
         private readonly DatabaseInterface $database,
+        private readonly LoggerInterface $logger,
     ) {}
 
     public function show(): ResponseInterface
@@ -36,6 +38,11 @@ final class ContactController
             'email' => $validated['email'],
             'message' => $validated['message'],
             'created_at' => date('Y-m-d H:i:s'),
+        ]);
+
+        // email in context — masked by addMasking()+withMasking() on this step
+        $this->logger->info('Contact form submitted', [
+            'email' => $validated['email'],
         ]);
 
         return $this->view->create('contact', [
