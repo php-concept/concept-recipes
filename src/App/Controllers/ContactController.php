@@ -28,13 +28,13 @@ final class ContactController
 
     /**
      * Type-hint FormRequest: resolver validates or throws ValidationException.
-     * After casting: toDto() → ContactDto (requires addCasting()).
+     * After casting: toDto() → ContactDto (requires CastingBrick).
      */
     public function submit(ContactFormRequest $form): ResponseInterface
     {
         $dto = $form->toDto();
         if (!$dto instanceof ContactDto) {
-            throw new \RuntimeException('ContactDto casting failed — is addCasting() enabled?');
+            throw new \RuntimeException('ContactDto casting failed — is CastingBrick enabled?');
         }
 
         $this->database->capsule()->table('contact_submissions')->insert($dto->toArray());

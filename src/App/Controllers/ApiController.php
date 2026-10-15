@@ -38,7 +38,7 @@ final class ApiController
     {
         $dto = $form->toDto();
         if (!$dto instanceof ContactDto) {
-            throw new \RuntimeException('ContactDto casting failed — is addCasting() enabled?');
+            throw new \RuntimeException('ContactDto casting failed — is CastingBrick enabled?');
         }
 
         $this->database->capsule()->table('contact_submissions')->insert($dto->toArray());
